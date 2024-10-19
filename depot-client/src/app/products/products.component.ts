@@ -4,10 +4,16 @@ import { NewProductComponent } from './new-product/new-product.component';
 import { ProductsService } from './products.service';
 import { Product } from './product.model';
 import { ProductItemComponent } from './product-item/product-item.component';
+import { ProductTableComponent } from './product-table/product-table.component';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [MatButtonModule, NewProductComponent, ProductItemComponent],
+  imports: [
+    MatButtonModule,
+    NewProductComponent,
+    ProductItemComponent,
+    ProductTableComponent,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })

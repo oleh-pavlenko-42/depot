@@ -1,0 +1,14 @@
+th:last-child {
+  text-align: center;
+}
+
+.table-image {
+  width: 4rem;
+  height: 5rem;
+}
+
+.table-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
