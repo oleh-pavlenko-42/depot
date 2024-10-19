@@ -11,17 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './product-table.component.html',
   styleUrl: './product-table.component.scss',
 })
-export class ProductTableComponent implements OnInit {
-  // products = input.required<Product[]>();
-  private productsService = inject(ProductsService);
-
-  products: Product[] = [];
-  dataSource: Product[] = [];
-
-  ngOnInit(): void {
-    this.products = this.productsService.allProducts();
-    this.dataSource = this.products;
-  }
+export class ProductTableComponent {
+  products = input.required<Product[]>();
 
   displayedColumns: string[] = ['imageUrl', 'title', 'price', 'actions'];
 }
