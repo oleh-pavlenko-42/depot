@@ -52,6 +52,7 @@ export class NewProductComponent {
       return;
     }
     const newProduct = new Product(
+      new Date().getTime().toString(),
       this.form.value.title!,
       this.form.value.description!,
       this.form.value.imageUrl!,
