@@ -1,0 +1,11 @@
+<div>
+  <h2>Listing products</h2>
+</div>
+<div>
+  <button mat-button (click)="onFormModalOpen()">New Product</button>
+</div>
+<div>
+  @if (isFormModalOpen) {
+  <app-new-product (close)="onFormModalClose()" />
+  }
+</div>
