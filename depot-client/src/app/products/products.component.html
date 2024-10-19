@@ -1,5 +1,12 @@
 <div>
   <h2>Listing products</h2>
+  <div class="product-list">
+    @for(product of products; track product.title) {
+    <a class="product-item">
+      <app-product-item [product]="product" />
+    </a>
+    }
+  </div>
 </div>
 <div>
   <button mat-button (click)="onFormModalOpen()">New Product</button>

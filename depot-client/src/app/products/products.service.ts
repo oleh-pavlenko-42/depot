@@ -1,11 +1,13 @@
 import { effect, Injectable, signal } from '@angular/core';
 import { Product } from './product.model';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
   private products = signal<Product[]>([]);
 
   allProducts = this.products.asReadonly();
+  productsUpdated = new Subject<Product[]>();
 
   constructor() {
     const products = localStorage.getItem('products');
@@ -20,5 +22,6 @@ export class ProductsService {
 
   addProduct(newProduct: Product) {
     this.products.update((oldProducts) => [...oldProducts, newProduct]);
+    this.productsUpdated.next(this.allProducts());
   }
 }
