@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,6 +8,8 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ProductsService } from '../products.service';
+import { Product } from '../product.model';
 
 @Component({
   selector: 'app-new-product',
@@ -22,6 +24,8 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './new-product.component.scss',
 })
 export class NewProductComponent {
+  private productsService = inject(ProductsService);
+
   form = new FormGroup({
     title: new FormControl('', {
       validators: [Validators.required],
@@ -44,10 +48,16 @@ export class NewProductComponent {
   }
 
   onSubmit() {
-    console.log('title', this.form.value.title);
-    console.log('description', this.form.value.description);
-    console.log('imageUrl', this.form.value.imageUrl);
-    console.log('price', this.form.value.price);
+    if (this.form.invalid) {
+      return;
+    }
+    const newProduct = new Product(
+      this.form.value.title!,
+      this.form.value.description!,
+      this.form.value.imageUrl!,
+      +this.form.value.price!
+    );
+    this.productsService.addProduct(newProduct);
     this.close.emit();
   }
 }
